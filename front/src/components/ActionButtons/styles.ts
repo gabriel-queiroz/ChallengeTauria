@@ -5,7 +5,7 @@ import { colors } from '../../styles';
 
 export const Container = styled.div`
   display: flex;
-  align-self: flex-end;
+  align-self: center;
 `;
 
 export const Button = styled.button`

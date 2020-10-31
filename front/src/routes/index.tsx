@@ -7,23 +7,30 @@ import {
 } from 'react-router-dom';
 import { Sizes, Crusts, Toppings, Confirmation } from '../pages';
 
+export const RouteNames = {
+  size: '/size',
+  crust: '/crust',
+  topping: '/topping',
+  confirmation: '/confirmation',
+};
+
 const Routes = () => (
   <Router>
     <Switch>
-      <Route path="/sizes">
+      <Route path={RouteNames.size}>
         <Sizes />
       </Route>
-      <Route path="/crusts">
+      <Route path={RouteNames.crust}>
         <Crusts />
       </Route>
-      <Route path="/toppings">
+      <Route path={RouteNames.topping}>
         <Toppings />
       </Route>
-      <Route path="/confirmation">
+      <Route path={RouteNames.confirmation}>
         <Confirmation />
       </Route>
       <Route path="*">
-        <Redirect to="/sizes" />
+        <Redirect to={RouteNames.size} />
       </Route>
     </Switch>
   </Router>

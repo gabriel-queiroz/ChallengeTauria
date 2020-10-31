@@ -2,9 +2,9 @@ import React from 'react';
 import * as S from './styles';
 
 interface ActionButtonsProps {
-  onPrevious?: () => {};
+  onPrevious?: () => void;
   previousDisabled?: boolean;
-  onNext?: () => {};
+  onNext?: () => void;
   nextDisabled?: boolean;
 }
 
