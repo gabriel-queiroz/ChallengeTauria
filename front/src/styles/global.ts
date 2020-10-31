@@ -8,6 +8,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
     outline: 0;
   }
+  html, body, #root{
+     height: 100%;
+  }
   body {
     background: ${colors.whiteLight};
     color: ${colors.blackLight};
@@ -22,5 +25,8 @@ export default createGlobalStyle`
   }
   button {
     cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: none;
   }
 `;

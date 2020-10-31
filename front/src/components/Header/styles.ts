@@ -3,7 +3,7 @@ import { colors } from '../../styles';
 
 export const Header = styled.header`
   width: 100%;
-  height: 5rem;
+  height: 5%;
   background-color: ${colors.redLight};
   display: flex;
   align-items: center;

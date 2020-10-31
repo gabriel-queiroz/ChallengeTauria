@@ -1,13 +1,14 @@
 import React from 'react';
 import { Global as GlobalStyle } from './styles';
 import Routes from './routes';
-import { Header } from './components';
+import { AppContainer } from './components';
 
 const App = () => (
   <>
     <GlobalStyle />
-    <Header />
-    <Routes />
+    <AppContainer>
+      <Routes />
+    </AppContainer>
   </>
 );
 
