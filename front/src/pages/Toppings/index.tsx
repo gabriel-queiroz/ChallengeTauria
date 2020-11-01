@@ -56,6 +56,11 @@ const Toppings = () => {
           />
         ))}
       </S.Toppings>
+
+      <S.MessageAlert show={toppingSelects.length > 3}>
+        Ao adicionar mais de 3 sabores, será cobrado $50 por cada sabor extra
+      </S.MessageAlert>
+
       <ActionButtons
         onPrevious={handleNavigateCrust}
         onNext={handleNavigateConfirmation}
