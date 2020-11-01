@@ -27,7 +27,7 @@ const Sizes = () => {
 
   return (
     <ContentPage>
-      <Title>Select Crust Your Pizza</Title>
+      <Title showGoBack>Select Crust Your Pizza</Title>
       <S.Container>
         <S.Crusts>
           <CardSelect

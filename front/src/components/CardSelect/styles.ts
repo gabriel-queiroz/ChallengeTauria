@@ -15,6 +15,7 @@ export const Container = styled.button<ContainerProps>`
   flex-direction: column;
   border-radius: 10px;
   position: relative;
+  margin: 2rem 0px;
   ${props =>
     props.selected &&
     css`

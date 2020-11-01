@@ -7,6 +7,7 @@ export const Pizzas = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 
 export const PizzaSmall = styled.div`

@@ -29,4 +29,10 @@ export default createGlobalStyle`
     outline: none;
     border: none;
   }
+
+  @media screen and (max-width: 900px){
+    body, input, button {
+    font-size: 12px;
+  }
+  }
 `;

@@ -4,6 +4,10 @@ import { colors } from '../../styles';
 export const Container = styled.div`
   margin: 0 auto;
   width: 70%;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 export const Segment = styled.div`

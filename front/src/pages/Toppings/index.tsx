@@ -11,7 +11,7 @@ import * as S from './styles';
 
 const Toppings = () => {
   const history = useHistory();
-  const [toppingSelects, setToppingSelects] = useState<any[]>([]);
+  const [toppingSelects, setToppingSelects] = useState<number[]>([]);
   const toppings = [
     { id: 1, name: 'Pepperoni' },
     { id: 2, name: 'Mushrooms' },
