@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import * as S from './styles';
 
 interface TitleProps {
-  showGoBack: boolean;
+  showGoBack?: boolean;
 }
 
 const Title: React.FC<TitleProps> = ({ children, showGoBack }) => {

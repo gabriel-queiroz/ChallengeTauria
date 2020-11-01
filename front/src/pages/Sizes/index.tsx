@@ -22,7 +22,7 @@ const Sizes = () => {
 
   return (
     <ContentPage>
-      <Title showGoBack>Select Size</Title>
+      <Title>Select Size Your Pizza</Title>
       <S.Container>
         <S.Pizzas>
           <CardSelect
@@ -48,7 +48,7 @@ const Sizes = () => {
             selected={pizza === 3}
           >
             <S.PizzaContent>
-              <S.PizzaBig>G</S.PizzaBig>
+              <S.PizzaBig>B</S.PizzaBig>
               <S.PizzaPrice>$12</S.PizzaPrice>
             </S.PizzaContent>
           </CardSelect>
