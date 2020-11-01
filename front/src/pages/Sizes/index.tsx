@@ -5,6 +5,8 @@ import {
   ActionButtons,
   ContentPage,
   CardSelect,
+  PizzaSize,
+  PizzaSizeEnum,
 } from '../../components';
 import { RouteNames } from '../../routes';
 import * as S from './styles';
@@ -29,28 +31,19 @@ const Sizes = () => {
             onClick={() => handleSelectPizza(1)}
             selected={pizza === 1}
           >
-            <S.PizzaContent>
-              <S.PizzaSmall>S</S.PizzaSmall>
-              <S.PizzaPrice>$8</S.PizzaPrice>
-            </S.PizzaContent>
+            <PizzaSize name="S" price="$8" size={PizzaSizeEnum.Small} />
           </CardSelect>
           <CardSelect
             onClick={() => handleSelectPizza(2)}
             selected={pizza === 2}
           >
-            <S.PizzaContent>
-              <S.PizzaMedium>M</S.PizzaMedium>
-              <S.PizzaPrice>$10</S.PizzaPrice>
-            </S.PizzaContent>
+            <PizzaSize name="M" price="$10" size={PizzaSizeEnum.Medium} />
           </CardSelect>
           <CardSelect
             onClick={() => handleSelectPizza(3)}
             selected={pizza === 3}
           >
-            <S.PizzaContent>
-              <S.PizzaBig>B</S.PizzaBig>
-              <S.PizzaPrice>$12</S.PizzaPrice>
-            </S.PizzaContent>
+            <PizzaSize name="L" price="$12" size={PizzaSizeEnum.Large} />
           </CardSelect>
         </S.Pizzas>
       </S.Container>

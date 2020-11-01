@@ -5,6 +5,8 @@ import {
   ActionButtons,
   ContentPage,
   CardSelect,
+  Crust,
+  CrustTypeEnum,
 } from '../../components';
 import { RouteNames } from '../../routes';
 import * as S from './styles';
@@ -32,19 +34,13 @@ const Sizes = () => {
             onClick={() => handleSelectCrust(1)}
             selected={crust === 1}
           >
-            <S.CrustContent>
-              <S.CrustThin>Thin</S.CrustThin>
-              <S.CrustPrice>+$2</S.CrustPrice>
-            </S.CrustContent>
+            <Crust name="Thin" type={CrustTypeEnum.Thin} />
           </CardSelect>
           <CardSelect
             onClick={() => handleSelectCrust(2)}
             selected={crust === 2}
           >
-            <S.CrustContent>
-              <S.CrustThick>Thick</S.CrustThick>
-              <S.CrustPrice>+$4</S.CrustPrice>
-            </S.CrustContent>
+            <Crust name="Thick" type={CrustTypeEnum.Thick} />
           </CardSelect>
         </S.Crusts>
       </S.Container>

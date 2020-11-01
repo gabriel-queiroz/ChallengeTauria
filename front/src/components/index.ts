@@ -5,3 +5,7 @@ export { default as ActionButtons } from './ActionButtons';
 export { default as ContentPage } from './ContentPage';
 export { default as CardSelect } from './CardSelect';
 export { default as ToppingSelect } from './ToppingSelect';
+export { default as PizzaSize } from './PizzaSize';
+export { SizeEnum as PizzaSizeEnum } from './PizzaSize';
+export { default as Crust } from './Crust';
+export { CrustTypeEnum } from './Crust';
