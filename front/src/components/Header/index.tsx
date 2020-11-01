@@ -3,7 +3,7 @@ import * as S from './styles';
 
 const Header = () => (
   <S.Header>
-    <S.Title>Queiróz Pizza</S.Title>
+    <S.Title>Osko Pizza</S.Title>
   </S.Header>
 );
 

@@ -29,19 +29,28 @@ const Sizes = () => {
             onClick={() => handleSelectPizza(1)}
             selected={pizza === 1}
           >
-            <S.PizzaSmall>S</S.PizzaSmall>
+            <S.PizzaContent>
+              <S.PizzaSmall>S</S.PizzaSmall>
+              <S.PizzaPrice>$8</S.PizzaPrice>
+            </S.PizzaContent>
           </CardSelect>
           <CardSelect
             onClick={() => handleSelectPizza(2)}
             selected={pizza === 2}
           >
-            <S.PizzaMedium>M</S.PizzaMedium>
+            <S.PizzaContent>
+              <S.PizzaMedium>M</S.PizzaMedium>
+              <S.PizzaPrice>$10</S.PizzaPrice>
+            </S.PizzaContent>
           </CardSelect>
           <CardSelect
             onClick={() => handleSelectPizza(3)}
             selected={pizza === 3}
           >
-            <S.PizzaBig>G</S.PizzaBig>
+            <S.PizzaContent>
+              <S.PizzaBig>G</S.PizzaBig>
+              <S.PizzaPrice>$12</S.PizzaPrice>
+            </S.PizzaContent>
           </CardSelect>
         </S.Pizzas>
       </S.Container>

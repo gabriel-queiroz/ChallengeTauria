@@ -21,7 +21,7 @@ export const Button = styled.button`
 
   &:disabled {
     background-color: ${colors.blackLight};
-    cursor: not-allowed;
+    cursor: disabled;
   }
 `;
 
@@ -33,7 +33,7 @@ export const IconLeft = styled(FontAwesomeIcon).attrs({
   icon: faArrowLeft,
 })`
   color: ${colors.whiteLight};
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-right: 0.5rem;
 `;
 

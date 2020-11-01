@@ -9,6 +9,8 @@ interface ContainerProps {
 
 export const Container = styled.button<ContainerProps>`
   padding: 2rem;
+  min-height: 350px;
+  min-width: 350px;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -21,7 +23,11 @@ export const Container = styled.button<ContainerProps>`
 `;
 
 export const Content = styled.div`
-  padding: 3rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
 `;
 
 export const IconContainer = styled.div<ContainerProps>`

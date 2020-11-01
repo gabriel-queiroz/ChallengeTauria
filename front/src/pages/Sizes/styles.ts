@@ -30,3 +30,17 @@ export const PizzaBig = styled(PizzaSmall)`
   width: 11rem;
   height: 11rem;
 `;
+
+export const PizzaPrice = styled.h4`
+  margin-top: 1rem;
+  font-size: 2rem;
+`;
+
+export const PizzaContent = styled.h4`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+`;
