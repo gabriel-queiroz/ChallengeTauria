@@ -1,12 +1,16 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext } from 'react';
+import Crust from '../interfaces/Crust';
+import PizzaSize from '../interfaces/PizzaSize';
+import Topping from '../interfaces/Topping';
 
 interface PurchaseContextState {
-  toppingsSelected: object[];
-  crustSelected: object;
-  pizzaSizeSelected: object;
-  selectPizzaSize(pizzaSize: any): void;
-  selectCrust(crust: any): void;
-  selectTopping(topping: any): void;
+  selectPizzaSize(pizzaSize: PizzaSize): void;
+  selectCrust(crust: Crust): void;
+  selectTopping(topping: Topping): void;
+  toppingsSelected: Topping[];
+  crustSelected: Crust;
+  pizzaSizeSelected: PizzaSize;
+  total: number;
 }
 
 const PurchaseContext = createContext<PurchaseContextState>(
@@ -14,21 +18,24 @@ const PurchaseContext = createContext<PurchaseContextState>(
 );
 
 export const PurchaseProvider: React.FC = ({ children }) => {
-  const [pizzaSizeSelected, setPizzaSizeSelected] = useState<any>();
-  const [crustSelected, setCrustSelected] = useState<any>();
-  const [toppingsSelected, setToppingsSelected] = useState<any>([]);
+  const [pizzaSizeSelected, setPizzaSizeSelected] = useState<PizzaSize>(
+    {} as PizzaSize,
+  );
+  const [crustSelected, setCrustSelected] = useState<Crust>({} as Crust);
+  const [toppingsSelected, setToppingsSelected] = useState<Topping[]>([]);
+  const [total, setTotal] = useState<number>(0);
 
-  const selectPizzaSize = (pizzaSize: any) => {
+  const selectPizzaSize = (pizzaSize: PizzaSize) => {
     setPizzaSizeSelected(pizzaSize);
   };
 
-  const selectCrust = (crust: any) => {
+  const selectCrust = (crust: Crust) => {
     setCrustSelected(crust);
   };
 
-  const selectTopping = (topping: any) => {
+  const selectTopping = (topping: Topping) => {
     const indexItem = toppingsSelected.findIndex(
-      (item: any) => item === topping.id,
+      (item: Topping) => item.id === topping.id,
     );
 
     if (indexItem !== -1) {
@@ -48,6 +55,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
         pizzaSizeSelected,
         crustSelected,
         toppingsSelected,
+        total,
       }}
     >
       {children}
