@@ -3,19 +3,27 @@ import * as S from './styles';
 
 interface ToppingSelectProps {
   selected?: boolean;
-  title?: string;
+  title: string;
   onClick?: () => void;
+  confirmed?: boolean;
 }
 
 const ToppingSelect: React.FC<ToppingSelectProps> = ({
   title,
   selected,
   onClick,
-}) => (
-  <S.Container selected={selected} onClick={onClick}>
-    <S.Title>{title}</S.Title>
-    {selected ? <S.IconRemove /> : <S.IconAdd />}
-  </S.Container>
-);
+  confirmed,
+}) => {
+  const SelectedIcon = () => {
+    if (confirmed) return <S.IconConfirmed />;
+    return selected ? <S.IconRemove /> : <S.IconAdd />;
+  };
+  return (
+    <S.Container selected={selected || confirmed} onClick={onClick}>
+      <S.Title>{title}</S.Title>
+      <SelectedIcon />
+    </S.Container>
+  );
+};
 
 export default ToppingSelect;

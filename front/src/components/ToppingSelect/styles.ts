@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlus,
+  faTrash,
+  faCheckCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { colors } from '../../styles';
 
 interface ContainerProps {
@@ -36,9 +40,10 @@ export const IconAdd = styled(FontAwesomeIcon).attrs({
   font-size: 1.2rem;
 `;
 
-export const IconRemove = styled(FontAwesomeIcon).attrs({
+export const IconRemove = styled(IconAdd).attrs({
   icon: faTrash,
-})`
-  color: ${colors.whiteLight};
-  font-size: 1.2rem;
-`;
+})``;
+
+export const IconConfirmed = styled(IconAdd).attrs({
+  icon: faCheckCircle,
+})``;

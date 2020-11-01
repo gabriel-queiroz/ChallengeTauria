@@ -8,6 +8,7 @@ import {
   PizzaSize,
   Crust,
   CrustTypeEnum,
+  ToppingSelect,
 } from '../../components';
 import { RouteNames } from '../../routes';
 import * as S from './styles';
@@ -34,7 +35,20 @@ const Crusts = () => {
         </S.Segment>
         <S.Segment>
           <S.SegmentTitle>Pizza Toppings</S.SegmentTitle>
-          <S.SegmentContent>crust</S.SegmentContent>
+          <S.SegmentContent>
+            <ToppingSelect title="abc" confirmed />
+            <ToppingSelect title="abc" confirmed />
+            <ToppingSelect title="abc" confirmed />
+            <ToppingSelect title="abc" confirmed />
+            <ToppingSelect title="abc" confirmed />
+            <ToppingSelect title="abc" confirmed />
+          </S.SegmentContent>
+        </S.Segment>
+        <S.Segment>
+          <S.SegmentTitle>Total</S.SegmentTitle>
+          <S.SegmentContent>
+            <S.TotalPrice>$20</S.TotalPrice>
+          </S.SegmentContent>
         </S.Segment>
       </S.Container>
       <ActionButtons onPrevious={handleNavigateCrust} nextDisabled />

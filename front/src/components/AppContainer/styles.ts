@@ -11,5 +11,5 @@ export const Content = styled.div`
   max-width: 1400px;
   margin: 0 auto;
   flex: 1;
-  padding: 5rem 0px;
+  padding: 1rem 0px;
 `;

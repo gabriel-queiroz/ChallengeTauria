@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Segment = styled.div`
-  padding: 20px 0px;
+  padding: 10px 0px;
   border-bottom: 1px solid ${colors.redLight};
   display: flex;
   align-items: center;
@@ -17,6 +17,17 @@ export const Segment = styled.div`
 export const SegmentTitle = styled.h4`
   color: ${colors.redLight};
   font-size: 1.5rem;
+  flex: 1;
+  width: 50%;
 `;
 
-export const SegmentContent = styled.div``;
+export const SegmentContent = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`;
+
+export const TotalPrice = styled.h5`
+  font-size: 5rem;
+`;
