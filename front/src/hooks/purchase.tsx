@@ -50,7 +50,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
       const valueToppingsAmount = toppingsSelected.length - 3;
       const valueToppings = valueToppingsAmount * 0.5;
       setToppingsTotal(valueToppings);
-      totalValue += valueToppings * 0.5;
+      totalValue += valueToppings;
     }
     setTotal(totalValue);
   }, [crustSelected, toppingsSelected, pizzaSizeSelected]);

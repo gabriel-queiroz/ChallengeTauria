@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Title,
@@ -14,6 +14,7 @@ import { usePurchase } from '../../hooks/purchase';
 
 const Crusts = () => {
   const history = useHistory();
+  const [showContent, setShowContent] = useState(false);
   const {
     toppingsSelected,
     crustSelected,
@@ -25,44 +26,58 @@ const Crusts = () => {
     history.push(RouteNames.topping);
   };
 
+  useEffect(() => {
+    if (
+      toppingsSelected.length > 0 &&
+      crustSelected.id &&
+      pizzaSizeSelected.id
+    ) {
+      setShowContent(true);
+      return;
+    }
+    history.replace(RouteNames.size);
+  }, []);
+
   return (
     <ContentPage>
       <Title showGoBack>Confirmation</Title>
-      <S.Container>
-        <S.Segment>
-          <S.SegmentTitle>Pizza Size</S.SegmentTitle>
-          <S.SegmentContent>
-            <PizzaSize
-              name={pizzaSizeSelected.name}
-              price={`$ ${pizzaSizeSelected.price}`}
-              size={pizzaSizeSelected.size}
+      {showContent && (
+        <S.Container>
+          <S.Segment>
+            <S.SegmentTitle>Pizza Size</S.SegmentTitle>
+            <S.SegmentContent>
+              <PizzaSize
+                name={pizzaSizeSelected.name}
+                price={`$ ${pizzaSizeSelected.price}`}
+                size={pizzaSizeSelected.size}
+              />
+            </S.SegmentContent>
+          </S.Segment>
+          <S.Segment>
+            <S.SegmentTitle>Pizza Crust</S.SegmentTitle>
+            <Crust
+              name={crustSelected.name}
+              type={crustSelected.type}
+              price={crustSelected.price}
             />
-          </S.SegmentContent>
-        </S.Segment>
-        <S.Segment>
-          <S.SegmentTitle>Pizza Crust</S.SegmentTitle>
-          <Crust
-            name={crustSelected.name}
-            type={crustSelected.type}
-            price={crustSelected.price}
-          />
-        </S.Segment>
-        <S.Segment>
-          <S.SegmentTitle>Pizza Toppings</S.SegmentTitle>
-          <S.SegmentContent>
-            {toppingsSelected.map(topping => (
-              <ToppingSelect title={topping.name} confirmed />
-            ))}
-            <S.ToppingsTotal>{`$ ${toppingsTotal}`}</S.ToppingsTotal>
-          </S.SegmentContent>
-        </S.Segment>
-        <S.Segment>
-          <S.SegmentTitle>Total</S.SegmentTitle>
-          <S.SegmentContent>
-            <S.TotalPrice>{`$ ${total}`}</S.TotalPrice>
-          </S.SegmentContent>
-        </S.Segment>
-      </S.Container>
+          </S.Segment>
+          <S.Segment>
+            <S.SegmentTitle>Pizza Toppings</S.SegmentTitle>
+            <S.SegmentContent>
+              {toppingsSelected.map(topping => (
+                <ToppingSelect title={topping.name} confirmed />
+              ))}
+              <S.ToppingsTotal>{`$ ${toppingsTotal}`}</S.ToppingsTotal>
+            </S.SegmentContent>
+          </S.Segment>
+          <S.Segment>
+            <S.SegmentTitle>Total</S.SegmentTitle>
+            <S.SegmentContent>
+              <S.TotalPrice>{`$ ${total}`}</S.TotalPrice>
+            </S.SegmentContent>
+          </S.Segment>
+        </S.Container>
+      )}
       <ActionButtons
         onPrevious={handleNavigateCrust}
         nextDisabled

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Title,
@@ -15,7 +15,9 @@ import { usePurchase } from '../../hooks/purchase';
 
 const Sizes = () => {
   const history = useHistory();
-  const { selectCrust, crustSelected } = usePurchase();
+  const { selectCrust, crustSelected, pizzaSizeSelected } = usePurchase();
+  const [showContent, setShowContent] = useState(false);
+
   const crusts: CrustInterface[] = [
     {
       id: 1,
@@ -41,26 +43,42 @@ const Sizes = () => {
     history.push(RouteNames.size);
   };
 
+  useEffect(() => {
+    if (pizzaSizeSelected.id) {
+      setShowContent(true);
+      return;
+    }
+    history.replace(RouteNames.size);
+  }, []);
+
   return (
     <ContentPage>
       <Title showGoBack>Select Crust Your Pizza</Title>
-      <S.Container>
-        <S.Crusts>
-          {crusts.map(crust => (
-            <CardSelect
-              onClick={() => handleSelectCrust(crust)}
-              selected={crustSelected.id === crust.id}
-            >
-              <Crust name={crust.name} price={crust.price} type={crust.type} />
-            </CardSelect>
-          ))}
-        </S.Crusts>
-      </S.Container>
-      <ActionButtons
-        onPrevious={handleNavigateSize}
-        onNext={handleNavigateTopping}
-        nextDisabled={!crustSelected}
-      />
+      {showContent && (
+        <>
+          <S.Container>
+            <S.Crusts>
+              {crusts.map(crust => (
+                <CardSelect
+                  onClick={() => handleSelectCrust(crust)}
+                  selected={crustSelected.id === crust.id}
+                >
+                  <Crust
+                    name={crust.name}
+                    price={crust.price}
+                    type={crust.type}
+                  />
+                </CardSelect>
+              ))}
+            </S.Crusts>
+          </S.Container>
+          <ActionButtons
+            onPrevious={handleNavigateSize}
+            onNext={handleNavigateTopping}
+            nextDisabled={!crustSelected}
+          />
+        </>
+      )}
     </ContentPage>
   );
 };

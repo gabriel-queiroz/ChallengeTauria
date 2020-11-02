@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Title,
@@ -13,7 +13,13 @@ import ToppingInterface from '../../interfaces/Topping';
 
 const Toppings = () => {
   const history = useHistory();
-  const { selectTopping, toppingsSelected } = usePurchase();
+  const {
+    selectTopping,
+    toppingsSelected,
+    crustSelected,
+    pizzaSizeSelected,
+  } = usePurchase();
+  const [showContent, setShowContent] = useState(false);
   const toppings: ToppingInterface[] = [
     { id: 1, name: 'Pepperoni' },
     { id: 2, name: 'Mushrooms' },
@@ -43,29 +49,42 @@ const Toppings = () => {
     return !!toppingsSelected.find(item => item.id === id);
   };
 
+  useEffect(() => {
+    if (crustSelected.id && pizzaSizeSelected.id) {
+      setShowContent(true);
+      return;
+    }
+    history.replace(RouteNames.size);
+  }, []);
+
   return (
     <ContentPage>
       <Title showGoBack>Select Toppings your pizza</Title>
-      <S.Toppings>
-        {toppings.map(topping => (
-          <ToppingSelect
-            key={topping.id}
-            title={topping.name}
-            selected={handleIsToppingSelected(topping.id)}
-            onClick={() => handleSelectItem(topping)}
+      {showContent && (
+        <>
+          <S.Toppings>
+            {toppings.map(topping => (
+              <ToppingSelect
+                key={topping.id}
+                title={topping.name}
+                selected={handleIsToppingSelected(topping.id)}
+                onClick={() => handleSelectItem(topping)}
+              />
+            ))}
+          </S.Toppings>
+
+          <S.MessageAlert show={toppingsSelected.length > 3}>
+            Ao adicionar mais de 3 sabores, será cobrado $50 por cada sabor
+            extra
+          </S.MessageAlert>
+
+          <ActionButtons
+            onPrevious={handleNavigateCrust}
+            onNext={handleNavigateConfirmation}
+            nextDisabled={toppingsSelected.length === 0}
           />
-        ))}
-      </S.Toppings>
-
-      <S.MessageAlert show={toppingsSelected.length > 3}>
-        Ao adicionar mais de 3 sabores, será cobrado $50 por cada sabor extra
-      </S.MessageAlert>
-
-      <ActionButtons
-        onPrevious={handleNavigateCrust}
-        onNext={handleNavigateConfirmation}
-        nextDisabled={toppingsSelected.length === 0}
-      />
+        </>
+      )}
     </ContentPage>
   );
 };
