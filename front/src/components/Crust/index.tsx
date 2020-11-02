@@ -10,9 +10,10 @@ export enum CrustTypeEnum {
 interface CrustProps {
   name: string;
   type: CrustTypeEnum;
+  price: number;
 }
 
-const Crust: React.FC<CrustProps> = ({ name, type }) => {
+const Crust: React.FC<CrustProps> = ({ name, type, price }) => {
   const SelectCrustType = () => {
     if (type === CrustTypeEnum.Thick)
       return <S.CrustThick>{name}</S.CrustThick>;
@@ -23,7 +24,7 @@ const Crust: React.FC<CrustProps> = ({ name, type }) => {
   return (
     <S.CrustContent>
       <SelectCrustType />
-      <S.CrustPrice>+$2</S.CrustPrice>
+      <S.CrustPrice>{`$ ${price}`}</S.CrustPrice>
     </S.CrustContent>
   );
 };

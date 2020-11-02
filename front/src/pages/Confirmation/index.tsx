@@ -14,7 +14,12 @@ import { usePurchase } from '../../hooks/purchase';
 
 const Crusts = () => {
   const history = useHistory();
-  const { toppingsSelected, crustSelected, pizzaSizeSelected } = usePurchase();
+  const {
+    toppingsSelected,
+    crustSelected,
+    pizzaSizeSelected,
+    total,
+  } = usePurchase();
   const handleNavigateCrust = () => {
     history.push(RouteNames.topping);
   };
@@ -35,7 +40,11 @@ const Crusts = () => {
         </S.Segment>
         <S.Segment>
           <S.SegmentTitle>Pizza Crust</S.SegmentTitle>
-          <Crust name={crustSelected.name} type={crustSelected.type} />
+          <Crust
+            name={crustSelected.name}
+            type={crustSelected.type}
+            price={crustSelected.price}
+          />
         </S.Segment>
         <S.Segment>
           <S.SegmentTitle>Pizza Toppings</S.SegmentTitle>
@@ -48,7 +57,7 @@ const Crusts = () => {
         <S.Segment>
           <S.SegmentTitle>Total</S.SegmentTitle>
           <S.SegmentContent>
-            <S.TotalPrice>$20</S.TotalPrice>
+            <S.TotalPrice>{`$ ${total}`}</S.TotalPrice>
           </S.SegmentContent>
         </S.Segment>
       </S.Container>

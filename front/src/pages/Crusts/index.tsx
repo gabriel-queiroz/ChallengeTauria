@@ -21,11 +21,13 @@ const Sizes = () => {
       id: 1,
       name: 'Thin',
       type: CrustTypeEnum.Thin,
+      price: 2,
     },
     {
       id: 2,
       name: 'Thick',
       type: CrustTypeEnum.Thick,
+      price: 4,
     },
   ];
   const handleNavigateTopping = () => {
@@ -49,7 +51,7 @@ const Sizes = () => {
               onClick={() => handleSelectCrust(crust)}
               selected={crustSelected.id === crust.id}
             >
-              <Crust name={crust.name} type={crust.type} />
+              <Crust name={crust.name} price={crust.price} type={crust.type} />
             </CardSelect>
           ))}
         </S.Crusts>
