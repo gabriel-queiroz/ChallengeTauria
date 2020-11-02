@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Title,
@@ -8,11 +8,13 @@ import {
 } from '../../components';
 import { RouteNames } from '../../routes';
 import * as S from './styles';
+import { usePurchase } from '../../hooks/purchase';
+import ToppingInterface from '../../interfaces/Topping';
 
 const Toppings = () => {
   const history = useHistory();
-  const [toppingSelects, setToppingSelects] = useState<number[]>([]);
-  const toppings = [
+  const { selectTopping, toppingsSelected } = usePurchase();
+  const toppings: ToppingInterface[] = [
     { id: 1, name: 'Pepperoni' },
     { id: 2, name: 'Mushrooms' },
     { id: 3, name: 'Onions' },
@@ -32,15 +34,12 @@ const Toppings = () => {
     history.push(RouteNames.confirmation);
   };
 
-  const handleSelectItem = (id: number) => {
-    const indexItem = toppingSelects.findIndex(item => item === id);
+  const handleSelectItem = (topping: ToppingInterface) => {
+    selectTopping(topping);
+  };
 
-    if (indexItem !== -1) {
-      toppingSelects.splice(indexItem, 1);
-      setToppingSelects([...toppingSelects]);
-      return;
-    }
-    setToppingSelects([...toppingSelects, id]);
+  const handleIsToppingSelected = (id: number): boolean => {
+    return !!toppingsSelected.find(item => item.id === id);
   };
 
   return (
@@ -51,19 +50,20 @@ const Toppings = () => {
           <ToppingSelect
             key={topping.id}
             title={topping.name}
-            selected={toppingSelects.includes(topping.id)}
-            onClick={() => handleSelectItem(topping.id)}
+            selected={handleIsToppingSelected(topping.id)}
+            onClick={() => handleSelectItem(topping)}
           />
         ))}
       </S.Toppings>
 
-      <S.MessageAlert show={toppingSelects.length > 3}>
+      <S.MessageAlert show={toppingsSelected.length > 3}>
         Ao adicionar mais de 3 sabores, será cobrado $50 por cada sabor extra
       </S.MessageAlert>
 
       <ActionButtons
         onPrevious={handleNavigateCrust}
         onNext={handleNavigateConfirmation}
+        nextDisabled={!toppingsSelected}
       />
     </ContentPage>
   );

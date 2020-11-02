@@ -23,7 +23,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
   );
   const [crustSelected, setCrustSelected] = useState<Crust>({} as Crust);
   const [toppingsSelected, setToppingsSelected] = useState<Topping[]>([]);
-  const [total, setTotal] = useState<number>(0);
+  const [total] = useState<number>(0);
 
   const selectPizzaSize = (pizzaSize: PizzaSize) => {
     setPizzaSizeSelected(pizzaSize);

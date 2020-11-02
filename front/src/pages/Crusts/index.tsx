@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Title,
@@ -8,18 +8,32 @@ import {
   Crust,
   CrustTypeEnum,
 } from '../../components';
+import CrustInterface from '../../interfaces/Crust';
 import { RouteNames } from '../../routes';
 import * as S from './styles';
+import { usePurchase } from '../../hooks/purchase';
 
 const Sizes = () => {
   const history = useHistory();
-  const [crust, setCrust] = useState<number>();
+  const { selectCrust, crustSelected } = usePurchase();
+  const crusts: CrustInterface[] = [
+    {
+      id: 1,
+      name: 'Thin',
+      type: CrustTypeEnum.Thin,
+    },
+    {
+      id: 2,
+      name: 'Thick',
+      type: CrustTypeEnum.Thick,
+    },
+  ];
   const handleNavigateTopping = () => {
     history.push(RouteNames.topping);
   };
 
-  const handleSelectCrust = (pizzaId: number) => {
-    setCrust(pizzaId);
+  const handleSelectCrust = (crust: CrustInterface) => {
+    selectCrust(crust);
   };
   const handleNavigateSize = () => {
     history.push(RouteNames.size);
@@ -30,24 +44,20 @@ const Sizes = () => {
       <Title showGoBack>Select Crust Your Pizza</Title>
       <S.Container>
         <S.Crusts>
-          <CardSelect
-            onClick={() => handleSelectCrust(1)}
-            selected={crust === 1}
-          >
-            <Crust name="Thin" type={CrustTypeEnum.Thin} />
-          </CardSelect>
-          <CardSelect
-            onClick={() => handleSelectCrust(2)}
-            selected={crust === 2}
-          >
-            <Crust name="Thick" type={CrustTypeEnum.Thick} />
-          </CardSelect>
+          {crusts.map(crust => (
+            <CardSelect
+              onClick={() => handleSelectCrust(crust)}
+              selected={crustSelected.id === crust.id}
+            >
+              <Crust name={crust.name} type={crust.type} />
+            </CardSelect>
+          ))}
         </S.Crusts>
       </S.Container>
       <ActionButtons
         onPrevious={handleNavigateSize}
         onNext={handleNavigateTopping}
-        nextDisabled={!crust}
+        nextDisabled={!crustSelected}
       />
     </ContentPage>
   );

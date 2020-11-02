@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   Title,
@@ -9,17 +9,26 @@ import {
   PizzaSizeEnum,
 } from '../../components';
 import { RouteNames } from '../../routes';
+import PizzaSizeInterface from '../../interfaces/PizzaSize';
 import * as S from './styles';
+import { usePurchase } from '../../hooks/purchase';
 
 const Sizes = () => {
   const history = useHistory();
-  const [pizza, setPizza] = useState<number>();
+  const { selectPizzaSize, pizzaSizeSelected } = usePurchase();
+
+  const pizzasSizes: PizzaSizeInterface[] = [
+    { id: 1, name: 'S', price: 8, size: PizzaSizeEnum.Small },
+    { id: 2, name: 'M', price: 10, size: PizzaSizeEnum.Medium },
+    { id: 3, name: 'L', price: 10, size: PizzaSizeEnum.Large },
+  ];
+
   const handleNavigateCrust = () => {
     history.push(RouteNames.crust);
   };
 
-  const handleSelectPizza = (pizzaId: number) => {
-    setPizza(pizzaId);
+  const handleSelectPizza = (pizzaSizeInterface: PizzaSizeInterface) => {
+    selectPizzaSize(pizzaSizeInterface);
   };
 
   return (
@@ -27,30 +36,24 @@ const Sizes = () => {
       <Title>Select Size Your Pizza</Title>
       <S.Container>
         <S.Pizzas>
-          <CardSelect
-            onClick={() => handleSelectPizza(1)}
-            selected={pizza === 1}
-          >
-            <PizzaSize name="S" price="$8" size={PizzaSizeEnum.Small} />
-          </CardSelect>
-          <CardSelect
-            onClick={() => handleSelectPizza(2)}
-            selected={pizza === 2}
-          >
-            <PizzaSize name="M" price="$10" size={PizzaSizeEnum.Medium} />
-          </CardSelect>
-          <CardSelect
-            onClick={() => handleSelectPizza(3)}
-            selected={pizza === 3}
-          >
-            <PizzaSize name="L" price="$12" size={PizzaSizeEnum.Large} />
-          </CardSelect>
+          {pizzasSizes.map(pizzaSize => (
+            <CardSelect
+              onClick={() => handleSelectPizza(pizzaSize)}
+              selected={pizzaSizeSelected.id === pizzaSize.id}
+            >
+              <PizzaSize
+                name={pizzaSize.name}
+                price={`$ ${pizzaSize.price}`}
+                size={pizzaSize.size}
+              />
+            </CardSelect>
+          ))}
         </S.Pizzas>
       </S.Container>
       <ActionButtons
         onNext={handleNavigateCrust}
         previousDisabled
-        nextDisabled={!pizza}
+        nextDisabled={!pizzaSizeSelected}
       />
     </ContentPage>
   );
