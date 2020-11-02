@@ -2,7 +2,7 @@
 
 Buy your pizza at [Osko Pizza](https://challengetauria.netlify.app/).
 
-In a custom way you can choose the size, crust, toppings and ingredients, according to your preferences.
+In a customized way you can choose the size, crust, toppings and ingredients, according to your preferences.
 
 ### Technologies:
 
@@ -18,10 +18,9 @@ In a custom way you can choose the size, crust, toppings and ingredients, accord
 
 ### How to execute the Project:
 
-```sh
-$ cd front && yarn
+sh
+$ cd front && yarn 
 $ yarn start
-```
 
 ### URL(Local)
 

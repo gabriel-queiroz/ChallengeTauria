@@ -79,7 +79,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
     }
     if (!canAddToppings()) {
       toast.warn(
-        `Sua pizza já tem ${toppingsSelected.length} ingrediente, você não pode adicionar mais ingredientes`,
+        `Your pizza can have ${toppingsSelected.length} ingredients at max`,
         {
           position: toast.POSITION.TOP_RIGHT,
         },
