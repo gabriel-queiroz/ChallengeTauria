@@ -4,17 +4,17 @@ import {
   Title,
   ContentPage,
   ActionButtons,
-  PizzaSizeEnum,
   PizzaSize,
   Crust,
-  CrustTypeEnum,
   ToppingSelect,
 } from '../../components';
 import { RouteNames } from '../../routes';
 import * as S from './styles';
+import { usePurchase } from '../../hooks/purchase';
 
 const Crusts = () => {
   const history = useHistory();
+  const { toppingsSelected, crustSelected, pizzaSizeSelected } = usePurchase();
   const handleNavigateCrust = () => {
     history.push(RouteNames.topping);
   };
@@ -26,22 +26,23 @@ const Crusts = () => {
         <S.Segment>
           <S.SegmentTitle>Pizza Size</S.SegmentTitle>
           <S.SegmentContent>
-            <PizzaSize name="M" price="$12" size={PizzaSizeEnum.Large} />
+            <PizzaSize
+              name={pizzaSizeSelected.name}
+              price={`$ ${pizzaSizeSelected.price}`}
+              size={pizzaSizeSelected.size}
+            />
           </S.SegmentContent>
         </S.Segment>
         <S.Segment>
           <S.SegmentTitle>Pizza Crust</S.SegmentTitle>
-          <Crust name="Thin" type={CrustTypeEnum.Thin} />
+          <Crust name={crustSelected.name} type={crustSelected.type} />
         </S.Segment>
         <S.Segment>
           <S.SegmentTitle>Pizza Toppings</S.SegmentTitle>
           <S.SegmentContent>
-            <ToppingSelect title="abc" confirmed />
-            <ToppingSelect title="abc" confirmed />
-            <ToppingSelect title="abc" confirmed />
-            <ToppingSelect title="abc" confirmed />
-            <ToppingSelect title="abc" confirmed />
-            <ToppingSelect title="abc" confirmed />
+            {toppingsSelected.map(topping => (
+              <ToppingSelect title={topping.name} confirmed />
+            ))}
           </S.SegmentContent>
         </S.Segment>
         <S.Segment>
