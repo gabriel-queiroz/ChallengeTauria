@@ -19,6 +19,7 @@ const Crusts = () => {
     crustSelected,
     pizzaSizeSelected,
     total,
+    toppingsTotal,
   } = usePurchase();
   const handleNavigateCrust = () => {
     history.push(RouteNames.topping);
@@ -52,6 +53,7 @@ const Crusts = () => {
             {toppingsSelected.map(topping => (
               <ToppingSelect title={topping.name} confirmed />
             ))}
+            <S.ToppingsTotal>{`$ ${toppingsTotal}`}</S.ToppingsTotal>
           </S.SegmentContent>
         </S.Segment>
         <S.Segment>

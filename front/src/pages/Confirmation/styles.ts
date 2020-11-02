@@ -35,3 +35,8 @@ export const SegmentContent = styled.div`
 export const TotalPrice = styled.h5`
   font-size: 5rem;
 `;
+
+export const ToppingsTotal = styled.h4`
+  margin-top: 1rem;
+  font-size: 2rem;
+`;

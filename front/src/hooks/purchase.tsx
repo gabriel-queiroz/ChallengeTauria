@@ -13,6 +13,7 @@ interface PurchaseContextState {
   crustSelected: Crust;
   pizzaSizeSelected: PizzaSize;
   total: number;
+  toppingsTotal: number;
 }
 
 const PurchaseContext = createContext<PurchaseContextState>(
@@ -25,6 +26,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
   );
   const [crustSelected, setCrustSelected] = useState<Crust>({} as Crust);
   const [toppingsSelected, setToppingsSelected] = useState<Topping[]>([]);
+  const [toppingsTotal, setToppingsTotal] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
 
   const selectPizzaSize = (pizzaSize: PizzaSize) => {
@@ -45,7 +47,9 @@ export const PurchaseProvider: React.FC = ({ children }) => {
       totalValue += pizzaSizeSelected.price;
     }
     if (toppingsSelected.length > 3) {
-      const valueToppings = toppingsSelected.length - 3;
+      const valueToppingsAmount = toppingsSelected.length - 3;
+      const valueToppings = valueToppingsAmount * 0.5;
+      setToppingsTotal(valueToppings);
       totalValue += valueToppings * 0.5;
     }
     setTotal(totalValue);
@@ -95,6 +99,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
         crustSelected,
         toppingsSelected,
         total,
+        toppingsTotal,
       }}
     >
       {children}
