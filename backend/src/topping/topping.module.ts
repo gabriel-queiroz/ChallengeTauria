@@ -7,6 +7,7 @@ import { ToppingService } from './service/topping/topping.service';
 @Module({
   imports: [TypeOrmModule.forFeature([ToppingEntity])],
   controllers: [ControllerController],
+  exports: [ToppingService],
   providers: [ToppingService],
 })
 export class ToppingModule {}

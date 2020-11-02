@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ToppingDto } from 'src/topping/dto/topping.dto';
 import { ToppingEntity } from 'src/topping/entity/topping.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 
 @Injectable()
 export class ToppingService {
@@ -21,6 +21,10 @@ export class ToppingService {
 
   findById(topppingId: number): Promise<ToppingDto> {
     return this.toppingRepository.findOne(topppingId);
+  }
+
+  findByIds(ids: number[]): Promise<ToppingDto[]> {
+    return this.toppingRepository.find({ where: { id: In(ids) } });
   }
 
   async delete(toppingId: number): Promise<ToppingDto> {
