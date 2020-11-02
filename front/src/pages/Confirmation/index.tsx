@@ -61,7 +61,11 @@ const Crusts = () => {
           </S.SegmentContent>
         </S.Segment>
       </S.Container>
-      <ActionButtons onPrevious={handleNavigateCrust} nextDisabled />
+      <ActionButtons
+        onPrevious={handleNavigateCrust}
+        nextDisabled
+        nextTitle="Confirm"
+      />
     </ContentPage>
   );
 };
