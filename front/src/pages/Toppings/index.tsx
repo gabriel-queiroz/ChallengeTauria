@@ -18,12 +18,13 @@ const Toppings = () => {
     { id: 1, name: 'Pepperoni' },
     { id: 2, name: 'Mushrooms' },
     { id: 3, name: 'Onions' },
-    { id: 4, name: 'Bacon' },
-    { id: 5, name: 'Extra cheese' },
-    { id: 6, name: 'Black olives' },
-    { id: 7, name: 'Green peppers' },
-    { id: 8, name: 'Pineapple' },
-    { id: 9, name: 'Spinach' },
+    { id: 4, name: 'Sausage' },
+    { id: 5, name: 'Bacon' },
+    { id: 6, name: 'Extra cheese' },
+    { id: 7, name: 'Black olives' },
+    { id: 8, name: 'Green peppers' },
+    { id: 9, name: 'Pineapple' },
+    { id: 10, name: 'Spinach' },
   ];
 
   const handleNavigateCrust = () => {
@@ -63,7 +64,7 @@ const Toppings = () => {
       <ActionButtons
         onPrevious={handleNavigateCrust}
         onNext={handleNavigateConfirmation}
-        nextDisabled={!toppingsSelected}
+        nextDisabled={toppingsSelected.length === 0}
       />
     </ContentPage>
   );

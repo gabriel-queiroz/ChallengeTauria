@@ -1,7 +1,9 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import Crust from '../interfaces/Crust';
 import PizzaSize from '../interfaces/PizzaSize';
 import Topping from '../interfaces/Topping';
+import { PizzaSizeEnum } from '../components';
 
 interface PurchaseContextState {
   selectPizzaSize(pizzaSize: PizzaSize): void;
@@ -27,6 +29,7 @@ export const PurchaseProvider: React.FC = ({ children }) => {
 
   const selectPizzaSize = (pizzaSize: PizzaSize) => {
     setPizzaSizeSelected(pizzaSize);
+    setToppingsSelected([]);
   };
 
   const selectCrust = (crust: Crust) => {
@@ -48,6 +51,19 @@ export const PurchaseProvider: React.FC = ({ children }) => {
     setTotal(totalValue);
   }, [crustSelected, toppingsSelected, pizzaSizeSelected]);
 
+  const canAddToppings = () => {
+    const maxToppingsSmall = 5;
+    const maxToppingsMedium = 7;
+    const maxToppingsLarge = 9;
+    if (pizzaSizeSelected.size === PizzaSizeEnum.Small) {
+      return toppingsSelected.length < maxToppingsSmall;
+    }
+    if (pizzaSizeSelected.size === PizzaSizeEnum.Medium) {
+      return toppingsSelected.length < maxToppingsMedium;
+    }
+    return toppingsSelected.length < maxToppingsLarge;
+  };
+
   const selectTopping = (topping: Topping) => {
     const indexItem = toppingsSelected.findIndex(
       (item: Topping) => item.id === topping.id,
@@ -55,6 +71,15 @@ export const PurchaseProvider: React.FC = ({ children }) => {
     if (indexItem !== -1) {
       toppingsSelected.splice(indexItem, 1);
       setToppingsSelected([...toppingsSelected]);
+      return;
+    }
+    if (!canAddToppings()) {
+      toast.warn(
+        `Sua pizza já tem ${toppingsSelected.length} ingrediente, você não pode adicionar mais ingredientes`,
+        {
+          position: toast.POSITION.TOP_RIGHT,
+        },
+      );
       return;
     }
     setToppingsSelected([...toppingsSelected, topping]);
