@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ToppingDto } from 'src/topping/dto/topping.dto';
 import { ToppingEntity } from 'src/topping/entity/topping.entity';
-import { Repository, UpdateResult } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ToppingService {
@@ -28,7 +28,8 @@ export class ToppingService {
     return this.toppingRepository.remove(topping);
   }
 
-  update(toppingId: number, topping: ToppingDto): Promise<any> {
-    return this.toppingRepository.update(toppingId, topping);
+  async update(toppingId: number, topping: ToppingDto): Promise<ToppingDto> {
+    await this.toppingRepository.update(toppingId, topping);
+    return this.toppingRepository.findOne(toppingId);
   }
 }
