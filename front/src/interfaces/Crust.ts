@@ -1,6 +1,8 @@
+import { CrustTypeEnum } from '../components';
+
 export default interface Crust {
   name: string;
   id: number;
-  type: any;
+  type: CrustTypeEnum;
   price: number;
 }
