@@ -26,7 +26,7 @@ const Crusts = () => {
     history.push(RouteNames.topping);
   };
 
-  useEffect(() => {
+  const validation = () => {
     if (
       toppingsSelected.length > 0 &&
       crustSelected.id &&
@@ -36,7 +36,11 @@ const Crusts = () => {
       return;
     }
     history.replace(RouteNames.size);
-  }, []);
+  };
+
+  useEffect(() => {
+    validation();
+  });
 
   return (
     <ContentPage>

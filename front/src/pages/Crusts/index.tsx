@@ -43,13 +43,17 @@ const Sizes = () => {
     history.push(RouteNames.size);
   };
 
-  useEffect(() => {
+  const validation = () => {
     if (pizzaSizeSelected.id) {
       setShowContent(true);
       return;
     }
     history.replace(RouteNames.size);
-  }, []);
+  };
+
+  useEffect(() => {
+    validation();
+  });
 
   return (
     <ContentPage>

@@ -49,13 +49,17 @@ const Toppings = () => {
     return !!toppingsSelected.find(item => item.id === id);
   };
 
-  useEffect(() => {
+  const validation = () => {
     if (crustSelected.id && pizzaSizeSelected.id) {
       setShowContent(true);
       return;
     }
     history.replace(RouteNames.size);
-  }, []);
+  };
+
+  useEffect(() => {
+    validation();
+  });
 
   return (
     <ContentPage>
